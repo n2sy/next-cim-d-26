@@ -1,69 +1,50 @@
-import Image from "next/image";
-import styles from "./page.module.css";
-
+import Affiche from "@/components/Affiche";
+const LIVRES_POPULAIRES = [
+  {
+    titre: "L'Étranger",
+    auteur: "Albert Camus",
+    annee: 1942,
+    image: "https://placehold.co/x.jpg",
+  },
+  {
+    titre: "1984",
+    auteur: "George Orwell",
+    annee: 1949,
+    image: "https://placehold.co/400x600/e74c3c/ffffff?text=1984",
+  },
+  {
+    titre: "Le Petit Prince",
+    auteur: "Antoine de Saint-Exupéry",
+    annee: 1943,
+    image: "https://placehold.co/400x600/f1c40f/333333?text=Le+Petit+Prince",
+  },
+  {
+    titre: "Les Misérables",
+    auteur: "Victor Hugo",
+    annee: 1862,
+    image: "https://placehold.co/400x600/8e44ad/ffffff?text=Les+Miserables",
+  },
+];
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.js</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <h1 className="display-6 py-5">Une bibliothèque, pas une vitrine.</h1>
+      <h2 className="h5 mb-3">Les plus populaires</h2>
+      <div className="row g-3">
+        {LIVRES_POPULAIRES.map((livre) => (
+          <div className="col-6 col-md-3" key={livre.titre}>
+            <article className="card">
+              <Affiche src={livre.image} alt={livre.titre} />
+              <div className="card-body">
+                <h6>{livre.titre}</h6>
+                <p className="text-secondary small mb-0">
+                  {livre.auteur} – {livre.annee}
+                </p>
+              </div>
+            </article>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
